@@ -25,7 +25,6 @@ public abstract class Screen<R> {
             return renderScreen();
         } catch (Exception e) {
             printError(e.getMessage());
-            e.printStackTrace();
             holdScreen();
         }
         return null;
