@@ -19,3 +19,9 @@ spring.datasource.password
 4. If error occurs during database startup, please do workaround:
    * create a database with the name `flight_management` and rerunning the application.
    * or create a database with the name `flight_management` and run script provided in [application-DDL.sql](db/application-DDL.sql)
+
+## 3. What needs to improve or missing during development :hammer:
+* Plan to add more unit and integration tests soon! :smiley:
+* Improve class and method documentation.
+* Limited time prevented thorough regression testing. :smiley:
+* Enhance the CLI abstractions for better readability and usability.
