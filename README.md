@@ -20,7 +20,15 @@ spring.datasource.password
    * create a database with the name `flight_management` and rerunning the application.
    * or create a database with the name `flight_management` and run script provided in [application-DDL.sql](db/application-DDL.sql)
 
-## 3. What needs to improve or missing during development :hammer:
+## 3. Alternatively, run with H2 database
+No required MySQL installation. Run the project with:
+
+```mvn spring-boot:run -Dspring-boot.run.profiles=h2```
+
+H2 will create a file inside ```./data``` package.\
+After the application terminate you can browse the data by using favourite DB client that support H2. 
+
+## 4. What needs to improve or missing during development :hammer:
 * Plan to add more unit and integration tests soon! :smiley:
 * Improve class and method documentation.
 * Limited time prevented thorough regression testing. :smiley:
