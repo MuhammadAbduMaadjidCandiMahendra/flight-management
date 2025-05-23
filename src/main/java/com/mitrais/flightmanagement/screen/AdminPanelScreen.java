@@ -54,7 +54,7 @@ public class AdminPanelScreen extends Screen<Void> {
                     addDestinationScreen.start();
                 }
                 case OPTION_CREATE_FLIGHT_ROUTE -> {
-                    final AddRouteScreen addRouteScreen = new AddRouteScreen(cityService, aircraftService, routeService);
+                    final AddRouteScreen addRouteScreen = new AddRouteScreen(cityService, aircraftService, routeService, systemOperationalService);
                     addRouteScreen.start();
                 }
                 case OPTION_RUN_BOOKING_SERVICE -> {
@@ -66,7 +66,6 @@ public class AdminPanelScreen extends Screen<Void> {
                     simulateNextDayScreen.start();
                 }
                 case OPTION_RUN_FLIGHT -> {
-                    // todo implement this
                     final RunFlightScreen runFlightScreen = new RunFlightScreen(routeService, systemOperationalService);
                     runFlightScreen.start();
                 }

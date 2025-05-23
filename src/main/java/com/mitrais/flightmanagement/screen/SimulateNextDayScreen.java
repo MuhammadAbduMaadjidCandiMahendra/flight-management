@@ -22,7 +22,10 @@ public class SimulateNextDayScreen extends Screen<Void> {
     protected Void renderScreen() {
         final SystemDay dayNow = systemOperationalService.getDayNow();
         final SystemDay dayTomorrow = dayNow.plus(1);
-        final List<Route> routes = routeService.searchingRouteFlightByScheduleDay(dayNow, dayTomorrow);
+        final List<Route> routes = routeService.searchingRouteFlightByScheduleDay(dayNow, dayTomorrow)
+                .stream()
+                .filter(r -> r.getRouteState().equals(Route.RouteState.SCHEDULED))
+                .toList();
         print("=== NEXT DAY ===");
         print("");
         print("Current day: %s".formatted(dayNow.getValue()));

@@ -6,6 +6,7 @@ import com.mitrais.flightmanagement.entity.Route;
 import com.mitrais.flightmanagement.service.AircraftService;
 import com.mitrais.flightmanagement.service.CityService;
 import com.mitrais.flightmanagement.service.RouteService;
+import com.mitrais.flightmanagement.service.SystemOperationalService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,11 +16,13 @@ public class AddRouteScreen extends Screen<Void> {
     private final CityService cityService;
     private final AircraftService aircraftService;
     private final RouteService routeService;
+    private final SystemOperationalService systemOperationalService;
 
-    public AddRouteScreen(CityService cityService, AircraftService aircraftService, RouteService routeService) {
+    public AddRouteScreen(CityService cityService, AircraftService aircraftService, RouteService routeService, SystemOperationalService systemOperationalService) {
         this.cityService = cityService;
         this.aircraftService = aircraftService;
         this.routeService = routeService;
+        this.systemOperationalService = systemOperationalService;
     }
 
     @Override
@@ -62,7 +65,10 @@ public class AddRouteScreen extends Screen<Void> {
         print("Enter schedule day:");
         final String scheduleDayInput = doInput();
         final int scheduleDay = parseScheduleDayInput(scheduleDayInput);
-        // todo validate if schedule day <= operational day + 1
+
+        if (scheduleDay <= systemOperationalService.getDayNow().getValue()) {
+            throw new IllegalStateException("Schedule day must be greater than the current day.");
+        }
 
         final Route route = routeService.scheduleRoute(departureCity, destinationCity, aircraft, scheduleDay);
         print(
