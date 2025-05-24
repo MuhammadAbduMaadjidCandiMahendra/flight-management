@@ -32,16 +32,12 @@ public class AddRouteScreen extends Screen<Void> {
 
         final List<City> cities = cityService.getAllCities();
         if (cities.isEmpty()) {
-            print("No available destinations.");
-            holdScreen();
-            return null;
+            throw new IllegalStateException("No available destinations.");
         }
 
         final List<Aircraft> aircraftList = aircraftService.findAllAircraft();
         if (aircraftList.isEmpty()) {
-            print("No available aircraft.");
-            holdScreen();
-            return null;
+            throw new IllegalStateException("No available aircraft.");
         }
 
         final String joinCityName = cities.stream()
