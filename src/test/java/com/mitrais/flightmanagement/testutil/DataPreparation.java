@@ -1,22 +1,25 @@
 package com.mitrais.flightmanagement.testutil;
 
-import com.mitrais.flightmanagement.entity.Aircraft;
-import com.mitrais.flightmanagement.entity.City;
-import com.mitrais.flightmanagement.entity.Route;
-import com.mitrais.flightmanagement.entity.SystemOperational;
+import com.mitrais.flightmanagement.entity.*;
 import com.mitrais.flightmanagement.model.SystemDay;
-import com.mitrais.flightmanagement.repository.AircraftRepository;
-import com.mitrais.flightmanagement.repository.CityRepository;
-import com.mitrais.flightmanagement.repository.RouteRepository;
-import com.mitrais.flightmanagement.repository.SystemOperationalRepository;
+import com.mitrais.flightmanagement.repository.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class DataPreparation {
 
-    public static void prepareSystemOperational(SystemOperationalRepository repo) {
-        repo.save(SystemOperational.builder()
+    public static final City JAKARTA = City.builder().name("Jakarta").build();
+    public static final City BALI = City.builder().name("Bali").build();
+    public static final City MAKASSAR = City.builder().name("Makassar").build();
+    public static final City SURABAYA = City.builder().name("Surabaya").build();
+    public static final Aircraft JET_1 = Aircraft.builder().name("Jet-1").seatCapacity(5).build();
+    public static final Passenger PASSENGER_A = Passenger.builder()
+            .name("PASSENGER_A")
+            .build();
+
+    public static SystemOperational prepareSystemOperational(SystemOperationalRepository repo) {
+        return repo.save(SystemOperational.builder()
                 .state(SystemOperational.SystemOperationalState.RUNNING)
                 .operationalDay(SystemDay.dayOf(2))
                 .timestamps(LocalDateTime.now())
@@ -24,16 +27,15 @@ public class DataPreparation {
     }
 
     public static Aircraft prepareAircraft(AircraftRepository repo) {
-        final var aircraftA = Aircraft.builder().name("Jet-1").seatCapacity(5).build();
-        return repo.save(aircraftA);
+        return repo.save(JET_1);
     }
 
     public static List<City> prepareCities(CityRepository repo) {
-        final var cityA = City.builder().name("Jakarta").build();
-        final var cityB = City.builder().name("Bali").build();
-        final var cityC = City.builder().name("Makassar").build();
-        final var cityD = City.builder().name("Surabaya").build();
-        return repo.saveAll(List.of(cityA, cityB, cityC, cityD));
+        return repo.saveAll(List.of(JAKARTA, BALI, MAKASSAR, SURABAYA));
+    }
+
+    public static Passenger preparePassenger(PassengerRepository repo) {
+        return repo.save(PASSENGER_A);
     }
 
     public static void prepareRoute(RouteRepository repo, Aircraft aircraft, City departureCity, City destinationCity, Integer scheduleDay) {
