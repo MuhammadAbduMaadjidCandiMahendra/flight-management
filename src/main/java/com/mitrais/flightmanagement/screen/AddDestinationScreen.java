@@ -18,6 +18,10 @@ public class AddDestinationScreen extends Screen<Void> {
         print("Enter destination name:");
         final String destinationName = doInput();
 
+        if (destinationName.isBlank()) {
+            throw new IllegalArgumentException("Destination name cannot be empty!");
+        }
+
         final City city = cityService.addCity(destinationName);
         print(city.getName() + " added as a destination!");
         holdScreen();
