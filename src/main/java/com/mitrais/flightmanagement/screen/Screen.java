@@ -1,5 +1,7 @@
 package com.mitrais.flightmanagement.screen;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Scanner;
 
 /**
@@ -8,6 +10,7 @@ import java.util.Scanner;
  * It also provides utility methods for clearing the screen and holding the screen until the user presses Enter.
  * @param <R> the type of the result that the screen will return
  */
+@Slf4j
 public abstract class Screen<R> {
     private final Scanner scanner = new Scanner(System.in);
 
@@ -25,6 +28,8 @@ public abstract class Screen<R> {
             return renderScreen();
         } catch (Exception e) {
             printError(e.getMessage());
+            log.error("Error message: {}", e.getMessage());
+            log.error("Error stacktrace: ", e);
             holdScreen();
         }
         return null;
@@ -53,7 +58,8 @@ public abstract class Screen<R> {
             if (os.contains("Windows")) {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
             } else {
-                Runtime.getRuntime().exec("clear");
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
             }
         } catch (Exception e) {
             e.printStackTrace();
