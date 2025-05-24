@@ -1,4 +1,4 @@
-package com.mitrais.flightmanagement.screen;
+package com.mitrais.flightmanagement.testutil;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

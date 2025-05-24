@@ -1,5 +1,6 @@
 package com.mitrais.flightmanagement.screen;
 
+import com.mitrais.flightmanagement.testutil.MockScanner;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

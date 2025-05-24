@@ -12,6 +12,7 @@ import com.mitrais.flightmanagement.service.AircraftService;
 import com.mitrais.flightmanagement.service.CityService;
 import com.mitrais.flightmanagement.service.RouteService;
 import com.mitrais.flightmanagement.service.SystemOperationalService;
+import com.mitrais.flightmanagement.testutil.MockScanner;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
