@@ -15,6 +15,9 @@ public class CityService {
     }
 
     public City addCity(String cityName) {
+        if (cityRepository.findCityByNameContainingIgnoreCase(cityName).isPresent()) {
+            throw new IllegalStateException("%s already exist".formatted(cityName));
+        }
         return cityRepository.save(City.builder()
                 .name(cityName)
                 .build());

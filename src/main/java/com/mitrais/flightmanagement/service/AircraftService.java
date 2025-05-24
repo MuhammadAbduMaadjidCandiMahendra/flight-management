@@ -14,6 +14,9 @@ public class AircraftService {
     }
 
     public Aircraft addAircraft(String name, Integer seatCapacity) {
+        if (aircraftRepository.findByNameContainingIgnoreCase(name).isPresent()) {
+            throw new IllegalStateException("%s already exist".formatted(name));
+        }
         return aircraftRepository.save(Aircraft.builder()
                 .name(name)
                 .seatCapacity(seatCapacity)

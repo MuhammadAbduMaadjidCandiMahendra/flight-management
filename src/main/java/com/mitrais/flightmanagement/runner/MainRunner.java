@@ -10,7 +10,7 @@ import com.mitrais.flightmanagement.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component todo fixme later
 public class MainRunner implements CommandLineRunner {
 
     private final AircraftService aircraftService;
